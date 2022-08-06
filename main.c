@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:36:42 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/04 21:13:54 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/06 23:49:45 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ void	ft_create_image(t_prgrm *vars, t_image *image)
 	int	j;
 
 	i = 0;
-	ft_printf("Entering create image function.\n");
-	ft_printf("vars->map[0]; %s\n", vars->map[0]);
-	ft_printf("vars->map[0][0]: %c\n", vars->map[0][0]);
-	ft_printf("1_0: %c\n", vars->map[1][0]);
-	ft_printf("1_1: %c\n", vars->map[1][1]);
 	while (vars->map[i] != NULL)
 	{
 		j = 0;
@@ -45,7 +40,6 @@ void	ft_create_image(t_prgrm *vars, t_image *image)
 		while (vars->map[i][j] != '\0')
 		{
 			vars->pos_square_x = vars->pos_square_x + 32;
-			ft_printf("In while: %c\n", vars->map[i][j]);
 			if (vars->map[i][j] == '0')
 				ft_put_square(vars, image, 0);
 			else if (vars->map[i][j] == '1')
@@ -58,7 +52,6 @@ void	ft_create_image(t_prgrm *vars, t_image *image)
 				ft_put_square(vars, image, 4);
 			j++;
 		}
-		ft_printf("___________________\n");
 		i++;
 	}
 }
@@ -80,23 +73,18 @@ int	main(int argc, char	**argv)
 	t_image	image;
 
 	if (argc < 2 || argc > 2)
-		ft_error(1);
+		ft_error(&vars, 1);
 	ft_put_values(&vars);
 	ft_read_from_map(&vars, argv[1]);
+	ft_check_map_border(&vars);
 	vars.mlx = mlx_init();
 	if (vars.mlx == NULL)
-	{
-		printf("Connection failed.\n");
-		exit(0);
-	}
+		perror("Connection to graphics unit failed.");
 	ft_printf("Initialized connection to display...\n");
 	vars.mlx_win = mlx_new_window(vars.mlx, (vars.x * 32) + 100, (vars.y * 32) + 100, "so_long");
 	ft_printf("Window address: %p\n", vars.mlx_win);
 	if (vars.mlx_win == NULL)
-	{
-		printf("Window could not be opened.\n");
-		exit(0);
-	}
+		perror("Window initialization failed.");
 	ft_printf("Opened window...\n");
 	ft_create_image(&vars, &image);
 	ft_hooks(&vars);

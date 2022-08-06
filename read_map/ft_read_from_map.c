@@ -6,11 +6,103 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:55:28 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/04 21:47:36 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/06 23:56:39 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	ft_check_map_player(t_prgrm *vars)
+{
+	int	i;
+	int	j;
+	int	p;
+
+	i = 0;
+	p = 0;
+	while (vars->map[i] != NULL)
+	{
+		j = 0;
+		while ((i > 0 && i < (vars->y - 1)) && vars->map[i][j] != '\0')
+		{
+			if (vars->map[i][j] == 'P')
+				p++;
+			if (vars->map[i][0] != '1' || vars->map[i][vars->x - 1] != '1')
+				ft_error(vars, 2);
+			j++;
+		}
+		i++;
+	}
+	if (p != 1)
+		ft_error(vars, 2);
+}
+
+void	ft_check_map_items(t_prgrm *vars)
+{
+	int	i;
+	int	j;
+	int	c;
+	int	e;
+
+	i = 0;
+	c = 0;
+	e = 0;
+	while (vars->map[i] != NULL)
+	{
+		j = 0;
+		while ((i > 0 && i < (vars->y - 1)) && vars->map[i][j] != '\0')
+		{
+			if (vars->map[i][j] == 'C')
+				c++;
+			if (vars->map[i][j] == 'E')
+				e++;
+			j++;
+		}
+		i++;
+	}
+	if (c < 1 || e < 1)
+		ft_error(vars, 2);
+}
+
+void	ft_check_map_border(t_prgrm *vars)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (vars->map[i] != NULL)
+	{
+		j = 0;
+		while ((i == 0 || i == (vars->y -1)) && vars->map[i][j] != '\0')
+		{
+			if (vars->map[i][j] != '1')
+				ft_error(vars, 2);
+			j++;
+		}
+		i++;
+	}
+	ft_check_map_items(vars);
+	ft_check_map_player(vars);
+}
+
+// in this fuction I find each new line character in the string and replace 
+// it with an end of line character.
+
+void	ft_replace_new_line(t_prgrm *vars)
+{
+	int	i;
+
+	i = 0;
+	while (vars->map[vars->y][i] != '\0')
+	{
+		if (vars->map[vars->y][i] == '\n')
+		{
+			vars->map[vars->y][i] = '\0';
+			return ;
+		}
+		i++;
+	}
+}
 
 // MAXIMUM SET FOR ROWS TO 500 IN THIS FUNCTION.
 
@@ -21,11 +113,10 @@ void	ft_read_from_map(t_prgrm *vars, char *map)
 
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		ft_printf("Opening didn't work.\n");
+		perror("open");
 	row_1 = get_next_line(fd);
 	if (row_1 == NULL)
 		ft_printf("File empty\n");
-	ft_printf("Row %d: %s", vars->y, row_1);
 	vars->x = ft_strlen(row_1) - 1;
 	row_1[vars->x] = '\0';
 	vars->map = malloc (500);
@@ -34,16 +125,12 @@ void	ft_read_from_map(t_prgrm *vars, char *map)
 	{
 		vars->y++;
 		vars->map[vars->y] = get_next_line(fd);
-		ft_printf("Row %d: %s", vars->y, vars->map[vars->y]);
 		if (vars->map[vars->y] == NULL)
-			break;
-		if (vars->map[vars->y][vars->x] == '\n')
-			vars->map[vars->y][vars->x] = '\0';
+			break ;
+		if (ft_strchr(vars->map[vars->y], '\n') != 0)
+			ft_replace_new_line(vars);
 		if (ft_strlen(vars->map[vars->y]) != (size_t)vars->x)
-			ft_error(1);
-		ft_printf("Row %d: %s", vars->y, vars->map[vars->y]);
+			ft_error(vars, 2);
 	}
 	vars->map[vars->y] = NULL;
-	ft_printf("y = %d, x = %d\n", vars->y, vars->x);
-	ft_printf("%s\n%s\n%s\n", vars->map[0], vars->map[1], vars->map[2]);
 }

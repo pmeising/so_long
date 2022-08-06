@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/04 20:32:24 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/06 23:49:40 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "errno.h"
 
 typedef struct s_prgrm
 {
@@ -47,6 +48,7 @@ typedef struct	s_image
 // READING MAP functions:
 
 void	ft_read_from_map(t_prgrm *vars, char *map);
+void	ft_check_map_border(t_prgrm *vars);
 void	ft_put_square(t_prgrm *vars, t_image *image, int i);
 
 // HOOK functions:
@@ -61,6 +63,6 @@ char	*get_next_line(int fd);
 
 // ERROR management
 
-void	ft_error(int ecode);
+void	ft_error(t_prgrm *vars, int ecode);
 
 #endif
