@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:55:28 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/07 10:44:58 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/07 18:20:52 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,14 @@ void	ft_check_map_player(t_prgrm *vars)
 		ft_error(vars, 2);
 }
 
-void	ft_check_map_items(t_prgrm *vars)
+void	ft_check_map_items(t_prgrm *vars, t_image *image)
 {
 	int	i;
 	int	j;
-	int	c;
 	int	e;
 
 	i = 0;
-	c = 0;
+	image->coins = 0;
 	e = 0;
 	while (vars->map[i] != NULL)
 	{
@@ -53,18 +52,18 @@ void	ft_check_map_items(t_prgrm *vars)
 		while ((i > 0 && i < (vars->y - 1)) && vars->map[i][j] != '\0')
 		{
 			if (vars->map[i][j] == 'C')
-				c++;
+				image->coins++;
 			if (vars->map[i][j] == 'E')
 				e++;
 			j++;
 		}
 		i++;
 	}
-	if (c < 1 || e < 1)
+	if (image->coins < 1 || e < 1)
 		ft_error(vars, 2);
 }
 
-void	ft_check_map_border(t_prgrm *vars)
+void	ft_check_map_border(t_prgrm *vars, t_image *image)
 {
 	int	i;
 	int	j;
@@ -81,7 +80,7 @@ void	ft_check_map_border(t_prgrm *vars)
 		}
 		i++;
 	}
-	ft_check_map_items(vars);
+	ft_check_map_items(vars, image);
 	ft_check_map_player(vars);
 }
 

@@ -6,7 +6,7 @@
 #    By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 13:20:22 by pmeising          #+#    #+#              #
-#    Updated: 2022/08/07 09:47:54 by pmeising         ###   ########.fr        #
+#    Updated: 2022/08/07 17:37:46 by pmeising         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ HEADER		:= so_long.h
 
 SRCS		:= main.c ft_hooks.c ./read_map/ft_read_from_map.c \
 			./read_map/ft_put_square.c ./error_handling/ft_error.c	\
+			./movement/ft_movements.c ./movement/ft_end_program.c	\
 
 OBJS		:= ${SRCS:.c=.o}
 
