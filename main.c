@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:36:42 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/06 23:49:45 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/07 10:47:49 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	ft_close_window(t_prgrm *vars)
 	exit (0);
 }
 
-void	ft_mlx_pixel_put_fast(t_image *image, int x, int y, int color)
-{
-	char	*dst;
+// void	ft_mlx_pixel_put_fast(t_image *image, int x, int y, int color)
+// {
+// 	char	*dst;
 
-	dst = image->addrs + (y * image->line_size + x * image->bpp / 8);
-	*(unsigned int *)dst = color;
-}
+// 	dst = image->addrs + (y * image->line_size + x * image->bpp / 8);
+// 	*(unsigned int *)dst = color;
+// }
 
 void	ft_create_image(t_prgrm *vars, t_image *image)
 {
@@ -56,13 +56,14 @@ void	ft_create_image(t_prgrm *vars, t_image *image)
 	}
 }
 
-void	ft_put_values(t_prgrm *vars)
+void	ft_put_values(t_prgrm *vars, t_image *image)
 {
 	vars->x = 0;
 	vars->y = 0;
 	vars->pos_square_x = 0;
 	vars->pos_square_y = 0;
 	vars->map_source = NULL;
+	image->xpm = mlx_xpm_file_to_image(vars->mlx, image->file_addr, &image->size_x, &image->size_y);
 }
 
 // xpm file to window, when destroy image/window, it doesn't delete the pointer.
@@ -74,7 +75,7 @@ int	main(int argc, char	**argv)
 
 	if (argc < 2 || argc > 2)
 		ft_error(&vars, 1);
-	ft_put_values(&vars);
+	ft_put_values(&vars, &image);
 	ft_read_from_map(&vars, argv[1]);
 	ft_check_map_border(&vars);
 	vars.mlx = mlx_init();

@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/06 23:49:40 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/07 09:52:53 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define SO_LONG_H
 
 # include "./mlx_linux/mlx.h"
-# include "./libft/libft.h"
-# include "./gnl/get_next_line.h"
+# include "./libft_lib/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>

@@ -6,12 +6,11 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:20:10 by pmeising          #+#    #+#             */
-/*   Updated: 2022/06/10 19:18:58 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/07 09:24:23 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#include "../libft.h"
 
 // callocs new memory space for combined length of remainder and read_into
 // Adds read_into to remainder.
@@ -158,18 +157,20 @@ char	*get_next_line(int fd)
 // 	int		fd;
 // 	int		i;
 // 	char	*string;
-// 	char	*file_name;
+// 	// char	*file_name;
 
-// 	file_name = "readfrom.c";
+// 	// file_name = "readfrom.c";
 // 	i = 0;
 // 	// printf("BUFFER_SIZE: %d\n", BUFFER_SIZE);
-// 	fd = open(file_name, O_RDWR);
-// 	if (fd == -1)
-// 	{
-// 		printf("open() failed.");
-// 		return (0);
-// 	}
-// 	printf("File descriptor chosen: %d\n", fd);
+// 	// fd = open(file_name, O_RDWR);
+// 	// if (fd == -1)
+// 	// {
+// 	// 	printf("open() failed.");
+// 	// 	return (0);
+// 	// }
+// 	// printf("File descriptor chosen: %d\n", fd);
+// 	fd = 1;
+// 	printf("This\n is \n a \n test\n for \n gnl\n");
 // 	while (i < 20)
 // 	{
 // 		string = get_next_line(fd);
@@ -177,9 +178,9 @@ char	*get_next_line(int fd)
 // 		i++;
 // 		free(string);
 // 	}
-// 	if (close(fd) == -1)
-// 	{
-// 		printf("close() failed.");
-// 		return (0);
-// 	}
+// 	// if (close(fd) == -1)
+// 	// {
+// 	// 	printf("close() failed.");
+// 	// 	return (0);
+// 	// }
 // }
