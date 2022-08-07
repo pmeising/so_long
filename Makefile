@@ -6,7 +6,7 @@
 #    By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 13:20:22 by pmeising          #+#    #+#              #
-#    Updated: 2022/08/07 17:37:46 by pmeising         ###   ########.fr        #
+#    Updated: 2022/08/07 22:01:26 by pmeising         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,13 @@ RM			:= rm -f
 
 HEADER		:= so_long.h
 
+MLX_DIR= ./minilibx-linux/
+
+MLX = ./minilibx-linux/libmlx.a
+
 SRCS		:= main.c ft_hooks.c ./read_map/ft_read_from_map.c \
 			./read_map/ft_put_square.c ./error_handling/ft_error.c	\
-			./movement/ft_movements.c ./movement/ft_end_program.c	\
+			./movement/ft_movements.c ./error_handling/ft_end_program.c	\
 
 OBJS		:= ${SRCS:.c=.o}
 
@@ -38,8 +42,11 @@ all:		${NAME}
 $(LIBFT):
 			make all -C ./libft_lib
 
-$(NAME):	$(LIBFT) $(OBJS)
-			$(CC) $(OBJS) $(LIBFT) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+$(MLX):
+			make -C $(MLX_DIR)
+
+$(NAME):	$(LIBFT) $(MLX) $(OBJS)
+			$(CC) $(OBJS) $(LIBFT) $(MLX) -L/usr/X11/lib -lXext -lX11 -o $(NAME)
 
 re:			fclean all
 

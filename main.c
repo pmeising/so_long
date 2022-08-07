@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:36:42 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/07 19:40:37 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/07 22:55:54 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int argc, char	**argv)
 	t_image	image;
 
 	if (argc < 2 || argc > 2)
-		ft_error(&vars, 1);
+		ft_error(&vars, &image, 1);
 	vars.mlx = mlx_init();
 	if (vars.mlx == NULL)
 		perror("Connection to graphics unit failed.");

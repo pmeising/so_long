@@ -6,14 +6,14 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/07 18:20:50 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/07 22:51:50 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "./mlx_linux/mlx.h"
+# include "./minilibx-linux/mlx.h"
 # include "./libft_lib/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
@@ -76,7 +76,7 @@ char	*get_next_line(int fd);
 
 // ERROR management
 
-void	ft_error(t_prgrm *vars, int ecode);
+void	ft_error(t_prgrm *vars, t_image *image, int ecode);
 
 // Utils
 

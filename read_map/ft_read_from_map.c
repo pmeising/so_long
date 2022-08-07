@@ -6,13 +6,13 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:55:28 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/07 18:20:52 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/07 22:51:40 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	ft_check_map_player(t_prgrm *vars)
+void	ft_check_map_player(t_prgrm *vars, t_image *image)
 {
 	int	i;
 	int	j;
@@ -28,13 +28,13 @@ void	ft_check_map_player(t_prgrm *vars)
 			if (vars->map[i][j] == 'P')
 				p++;
 			if (vars->map[i][0] != '1' || vars->map[i][vars->x - 1] != '1')
-				ft_error(vars, 2);
+				ft_error(vars, image, 2);
 			j++;
 		}
 		i++;
 	}
 	if (p != 1)
-		ft_error(vars, 2);
+		ft_error(vars, image, 2);
 }
 
 void	ft_check_map_items(t_prgrm *vars, t_image *image)
@@ -60,7 +60,7 @@ void	ft_check_map_items(t_prgrm *vars, t_image *image)
 		i++;
 	}
 	if (image->coins < 1 || e < 1)
-		ft_error(vars, 2);
+		ft_error(vars, image, 2);
 }
 
 void	ft_check_map_border(t_prgrm *vars, t_image *image)
@@ -69,19 +69,22 @@ void	ft_check_map_border(t_prgrm *vars, t_image *image)
 	int	j;
 
 	i = 0;
+	
 	while (vars->map[i] != NULL)
 	{
 		j = 0;
+		if (ft_strlen(vars->map[j]) != (size_t)vars->x)
+			ft_error(vars, image, 2);
 		while ((i == 0 || i == (vars->y -1)) && vars->map[i][j] != '\0')
 		{
 			if (vars->map[i][j] != '1')
-				ft_error(vars, 2);
+				ft_error(vars, image, 2);
 			j++;
 		}
 		i++;
 	}
 	ft_check_map_items(vars, image);
-	ft_check_map_player(vars);
+	ft_check_map_player(vars, image);
 }
 
 // in this fuction I find each new line character in the string and replace 
@@ -118,7 +121,7 @@ void	ft_read_from_map(t_prgrm *vars, char *map)
 		ft_printf("File empty\n");
 	vars->x = ft_strlen(row_1) - 1;
 	row_1[vars->x] = '\0';
-	vars->map = malloc (500);
+	vars->map = malloc(500);
 	vars->map[vars->y] = row_1;
 	while (vars->map[vars->y] != NULL)
 	{
@@ -128,9 +131,6 @@ void	ft_read_from_map(t_prgrm *vars, char *map)
 			break ;
 		if (ft_strchr(vars->map[vars->y], '\n') != 0)
 			ft_replace_new_line(vars);
-		if (ft_strlen(vars->map[vars->y]) != (size_t)vars->x)
-			ft_error(vars, 2);
 	}
 	close(fd);
-	vars->map[vars->y] = NULL;
 }
