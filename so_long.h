@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/07 22:51:50 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/09 22:18:58 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_prgrm
 	int		pos_square_y;
 	int		x;
 	int		y;
+	int		coins;
 }					t_prgrm;
 
 typedef struct	s_image
@@ -41,7 +42,6 @@ typedef struct	s_image
 	char		*file_addr;
 	int			size_x;
 	int			size_y;
-	int			coins;
 	void		*xpm;
 	void		*wall;
 	void		*wall_flame;
@@ -56,14 +56,14 @@ typedef struct	s_image
 // READING MAP functions:
 
 void	ft_read_from_map(t_prgrm *vars, char *map);
-void	ft_check_map_border(t_prgrm *vars, t_image *image);
+void	ft_check_map_border(t_prgrm *vars);
 void	ft_put_square(t_prgrm *vars, t_image *image, int i);
 
 // HOOK functions:
 
 void	ft_hooks(t_prgrm *vars);
 int		ft_key_hook(int keycode, t_prgrm *vars, t_image *image);
-int		ft_close_program(t_prgrm *vars, t_image *image);
+int		ft_close_program(t_prgrm *vars, int ecode);
 
 // Walking the character
 
@@ -76,11 +76,21 @@ char	*get_next_line(int fd);
 
 // ERROR management
 
-void	ft_error(t_prgrm *vars, t_image *image, int ecode);
+void	ft_error(t_prgrm *vars, int ecode);
 
 // Utils
 
-void	ft_put_values(t_prgrm *vars, t_image *image);
-void	ft_dest_images(t_prgrm *vars, t_image *image);
+void	ft_put_values(t_prgrm *vars);
+void	ft_free_images(t_prgrm *vars, t_image *image);
+void	ft_print_addr(t_image *image);
+int		ft_helper_0(t_prgrm *vars, t_image *image);
+int		ft_helper_1(t_prgrm *vars, t_image *image);
+int		ft_helper_2(t_prgrm *vars, t_image *image);
+int		ft_helper_3(t_prgrm *vars, t_image *image);
+int		ft_helper_4(t_prgrm *vars);
+int		ft_helper_5(t_prgrm *vars);
+int		ft_helper_6(t_prgrm *vars);
+int		ft_helper_7(t_prgrm *vars);
+void	ft_put_flames(t_prgrm *vars, t_image *image);
 
 #endif

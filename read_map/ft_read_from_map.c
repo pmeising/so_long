@@ -6,13 +6,13 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:55:28 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/07 22:51:40 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/09 23:20:05 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	ft_check_map_player(t_prgrm *vars, t_image *image)
+void	ft_check_map_player(t_prgrm *vars)
 {
 	int	i;
 	int	j;
@@ -28,23 +28,27 @@ void	ft_check_map_player(t_prgrm *vars, t_image *image)
 			if (vars->map[i][j] == 'P')
 				p++;
 			if (vars->map[i][0] != '1' || vars->map[i][vars->x - 1] != '1')
-				ft_error(vars, image, 2);
+				ft_error(vars, 2);
+			if (vars->map[i][j] != '1' && vars->map[i][j] != '0' &&
+				vars->map[i][j] != 'C' && vars->map[i][j] != 'E' &&
+				vars->map[i][j] != 'P' && vars->map[i][j] != 'V')
+				ft_error(vars, 2);
 			j++;
 		}
 		i++;
 	}
 	if (p != 1)
-		ft_error(vars, image, 2);
+		ft_error(vars, 2);
 }
 
-void	ft_check_map_items(t_prgrm *vars, t_image *image)
+void	ft_check_map_items(t_prgrm *vars)
 {
 	int	i;
 	int	j;
 	int	e;
 
 	i = 0;
-	image->coins = 0;
+	vars->coins = 0;
 	e = 0;
 	while (vars->map[i] != NULL)
 	{
@@ -52,39 +56,40 @@ void	ft_check_map_items(t_prgrm *vars, t_image *image)
 		while ((i > 0 && i < (vars->y - 1)) && vars->map[i][j] != '\0')
 		{
 			if (vars->map[i][j] == 'C')
-				image->coins++;
+			{
+				vars->coins++;
+			}
 			if (vars->map[i][j] == 'E')
 				e++;
 			j++;
 		}
 		i++;
 	}
-	if (image->coins < 1 || e < 1)
-		ft_error(vars, image, 2);
+	if (vars->coins < 1 || e < 1)
+		ft_error(vars, 2);
 }
 
-void	ft_check_map_border(t_prgrm *vars, t_image *image)
+void	ft_check_map_border(t_prgrm *vars)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	
 	while (vars->map[i] != NULL)
 	{
 		j = 0;
 		if (ft_strlen(vars->map[j]) != (size_t)vars->x)
-			ft_error(vars, image, 2);
+			ft_error(vars, 2);
 		while ((i == 0 || i == (vars->y -1)) && vars->map[i][j] != '\0')
 		{
 			if (vars->map[i][j] != '1')
-				ft_error(vars, image, 2);
+				ft_error(vars, 2);
 			j++;
 		}
 		i++;
 	}
-	ft_check_map_items(vars, image);
-	ft_check_map_player(vars, image);
+	ft_check_map_items(vars);
+	ft_check_map_player(vars);
 }
 
 // in this fuction I find each new line character in the string and replace 
@@ -115,7 +120,10 @@ void	ft_read_from_map(t_prgrm *vars, char *map)
 
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
+	{
 		perror("open");
+		ft_error(vars, 3);
+	}
 	row_1 = get_next_line(fd);
 	if (row_1 == NULL)
 		ft_printf("File empty\n");

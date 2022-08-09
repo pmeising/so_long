@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_movements.coins                                     :+:      :+:    :+:   */
+/*   ft_movements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 14:33:17 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/07 18:17:05 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/09 23:19:56 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,66 +14,110 @@
 
 void	ft_walk_left(t_prgrm *vars, t_image *image)
 {
-	if (vars->map[((vars->pos_square_y - 32) / 32)][(((vars->pos_square_x - 32)/32) - 1)] == '1')
+	int	exit;
+	int	shine;
+
+	exit = 0;
+	if (vars->map[((vars->pos_square_y - 32) / 32)]
+		[(((vars->pos_square_x - 32) / 32) - 1)] == '1')
 		return ;
-	else if (vars->map[((vars->pos_square_y - 32) / 32)][(((vars->pos_square_x - 32)/32) - 1)] == 'C')
-		image->coins--;
-	ft_printf("coins: %d\n", image->coins);
+	shine = ft_helper_0(vars, image);
+	exit = ft_helper_4(vars);
+	if (exit == 1 && vars->coins == 0)
+		ft_close_program(vars, 0);
+	else if (exit == 1)
+		return ;
 	ft_put_square(vars, image, 0);
-	vars->map[((vars->pos_square_y - 32) / 32)][((vars->pos_square_x - 32) / 32)] = '0';
-	vars->map[((vars->pos_square_y - 32) / 32)][(((vars->pos_square_x - 32) / 32) - 1)] = 'P';
+	vars->map[((vars->pos_square_y - 32) / 32)]
+	[((vars->pos_square_x - 32) / 32)] = '0';
+	vars->map[((vars->pos_square_y - 32) / 32)]
+	[(((vars->pos_square_x - 32) / 32) - 1)] = 'P';
 	vars->pos_square_x = vars->pos_square_x - 32;
-	ft_put_square(vars, image, 4);
-	if (vars->map[((vars->pos_square_y - 32) / 32)][((vars->pos_square_x - 32)/32)] == 'E' && image->coins == 0)
-		ft_close_program(vars, image);
+	if (shine == 1)
+		ft_put_square(vars, image, 7);
+	else
+		ft_put_square(vars, image, 6);
 }
 
 void	ft_walk_right(t_prgrm *vars, t_image *image)
 {
-	if (vars->map[((vars->pos_square_y - 32) / 32)][(((vars->pos_square_x - 32)/32) + 1)] == '1')
+	int	exit;
+	int	shine;
+
+	exit = 0;
+	if (vars->map[((vars->pos_square_y - 32) / 32)]
+		[(((vars->pos_square_x - 32) / 32) + 1)] == '1')
 		return ;
-	else if (vars->map[((vars->pos_square_y - 32) / 32)][(((vars->pos_square_x - 32)/32) + 1)] == 'C')
-		image->coins--;
-	ft_printf("coins: %d\n", image->coins);
+	shine = ft_helper_1(vars, image);
+	exit = ft_helper_5(vars);
+	if (exit == 1 && vars->coins == 0)
+		ft_close_program(vars, 0);
+	else if (exit == 1)
+		return ;
 	ft_put_square(vars, image, 0);
-	vars->map[((vars->pos_square_y - 32) / 32)][((vars->pos_square_x - 32) / 32)] = '0';
-	vars->map[((vars->pos_square_y - 32) / 32)][(((vars->pos_square_x - 32) / 32) + 1)] = 'P';
+	vars->map[((vars->pos_square_y - 32) / 32)]
+	[((vars->pos_square_x - 32) / 32)] = '0';
+	vars->map[((vars->pos_square_y - 32) / 32)]
+	[(((vars->pos_square_x - 32) / 32) + 1)] = 'P';
 	vars->pos_square_x = vars->pos_square_x + 32;
-	ft_put_square(vars, image, 4);
-	if (vars->map[((vars->pos_square_y - 32) / 32)][((vars->pos_square_x - 32)/32)] == 'E' && image->coins == 0)
-		ft_close_program(vars, image);
+	if (shine == 1)
+		ft_put_square(vars, image, 5);
+	else
+		ft_put_square(vars, image, 4);
 }
 
 void	ft_walk_up(t_prgrm *vars, t_image *image)
 {
-	if (vars->map[(((vars->pos_square_y - 32) / 32) - 1)][((vars->pos_square_x - 32)/32)] == '1')
+	int	exit;
+	int	shine;
+
+	exit = 0;
+	if (vars->map[(((vars->pos_square_y - 32) / 32) - 1)]
+		[((vars->pos_square_x - 32) / 32)] == '1')
 		return ;
-	else if (vars->map[(((vars->pos_square_y - 32) / 32) - 1)][((vars->pos_square_x - 32)/32)] == 'C')
-		image->coins--;
-	ft_printf("coins: %d\n", image->coins);
+	shine = ft_helper_2(vars, image);
+	exit = ft_helper_6(vars);
+	if (exit == 1 && vars->coins == 0)
+		ft_close_program(vars, 0);
+	else if (exit == 1)
+		return ;
 	ft_put_square(vars, image, 0);
-	vars->map[((vars->pos_square_y - 32) / 32)][((vars->pos_square_x - 32) / 32)] = '0';
-	vars->map[(((vars->pos_square_y - 32) / 32) - 1)][((vars->pos_square_x - 32) / 32)] = 'P';
+	vars->map[((vars->pos_square_y - 32) / 32)]
+	[((vars->pos_square_x - 32) / 32)] = '0';
+	vars->map[(((vars->pos_square_y - 32) / 32) - 1)]
+	[((vars->pos_square_x - 32) / 32)] = 'P';
 	vars->pos_square_y = vars->pos_square_y - 32;
-	ft_put_square(vars, image, 4);
-	if (vars->map[((vars->pos_square_y - 32) / 32)][((vars->pos_square_x - 32)/32)] == 'E' && image->coins == 0)
-		ft_close_program(vars, image);
+	if (shine == 1)
+		ft_put_square(vars, image, 5);
+	else
+		ft_put_square(vars, image, 4);
 }
 
 void	ft_walk_down(t_prgrm *vars, t_image *image)
 {
-	if (vars->map[(((vars->pos_square_y - 32) / 32) + 1)][((vars->pos_square_x - 32)/32)] == '1')
+	int	exit;
+	int	shine;
+
+	exit = 0;
+	if (vars->map[(((vars->pos_square_y - 32) / 32) + 1)]
+		[((vars->pos_square_x - 32) / 32)] == '1')
 		return ;
-	else if (vars->map[(((vars->pos_square_y - 32) / 32) + 1)][((vars->pos_square_x - 32)/32)] == 'C')
-		image->coins--;
-	ft_printf("coins: %d\n", image->coins);
+	shine = ft_helper_3(vars, image);
+	exit = ft_helper_7(vars);
+	if (exit == 1 && vars->coins == 0)
+		ft_close_program(vars, 0);
+	else if (exit == 1)
+		return ;
 	ft_put_square(vars, image, 0);
-	vars->map[((vars->pos_square_y - 32) / 32)][((vars->pos_square_x - 32) / 32)] = '0';
-	vars->map[(((vars->pos_square_y - 32) / 32) + 1)][((vars->pos_square_x - 32) / 32)] = 'P';
+	vars->map[((vars->pos_square_y - 32) / 32)]
+	[((vars->pos_square_x - 32) / 32)] = '0';
+	vars->map[(((vars->pos_square_y - 32) / 32) + 1)]
+	[((vars->pos_square_x - 32) / 32)] = 'P';
 	vars->pos_square_y = vars->pos_square_y + 32;
-	ft_put_square(vars, image, 4);
-	if (vars->map[((vars->pos_square_y - 32) / 32)][((vars->pos_square_x - 32)/32)] == 'E' && image->coins == 0)
-		ft_close_program(vars, image);
+	if (shine == 1)
+		ft_put_square(vars, image, 5);
+	else
+		ft_put_square(vars, image, 4);
 }
 
 // Here I walk through the map to find the players x and y parameters.
@@ -89,11 +133,8 @@ void	ft_walk(t_prgrm *vars, t_image *image, int direction)
 		y++;
 	while (vars->map[y][x] != 'P')
 		x++;
-	// ft_free_struct(image);
-	ft_put_values(vars, image);
 	vars->pos_square_x = 32 + (x * 32);
 	vars->pos_square_y = 32 + (y * 32);
-	ft_printf("Positions: x %d, y %d\n", vars->pos_square_x, vars->pos_square_y);
 	if (direction == 0)
 		ft_walk_up(vars, image);
 	else if (direction == 1)
