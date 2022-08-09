@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/09 22:18:58 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/09 23:36:58 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_prgrm
 	int		x;
 	int		y;
 	int		coins;
+	int		moves;
 }					t_prgrm;
 
 typedef struct	s_image

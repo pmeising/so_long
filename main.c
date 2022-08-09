@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:36:42 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/09 23:28:53 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/09 23:40:43 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_put_values(t_prgrm *vars)
 	vars->pos_square_x = 0;
 	vars->pos_square_y = 0;
 	vars->map_source = NULL;
+	vars->moves = 0;
 }
 
 // xpm file to window, when destroy image/window, it doesn't delete the pointer.
@@ -71,7 +72,7 @@ int	main(int argc, char	**argv)
 	ft_put_values(&vars);
 	ft_read_from_map(&vars, argv[1]);
 	ft_check_map_border(&vars);
-	vars.mlx_win = mlx_new_window(vars.mlx, (vars.x * 32) + 64, (vars.y * 32) + 64, "so_long");
+	vars.mlx_win = mlx_new_window(vars.mlx, (vars.x * 32) + 64, (vars.y * 32) + 96, "so_long");
 	if (vars.mlx_win == NULL)
 		perror("Window initialization failed.");
 	ft_create_image(&vars, &image);

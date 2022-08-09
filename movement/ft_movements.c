@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 14:33:17 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/09 23:19:56 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/09 23:57:06 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,4 +143,7 @@ void	ft_walk(t_prgrm *vars, t_image *image, int direction)
 		ft_walk_down(vars, image);
 	else if (direction == 3)
 		ft_walk_right(vars, image);
+	vars->moves++;
+	mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32), ((vars->y * 32) + 64), 0xFFFFFFFF, "MOVES:");
+	mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32) + 32, ((vars->y * 32) + 64), 0xFFFFFFFF, ft_itoa(vars->moves));
 }
