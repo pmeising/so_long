@@ -6,27 +6,27 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:36:42 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/11 16:44:44 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/11 21:11:55 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_create_image_2(t_prgrm *vars, t_image *image, char c)
+void	ft_create_image_2(t_prgrm *vars, char c)
 {
 	if (c == '0')
-		ft_put_square(vars, image, 0);
+		ft_put_square(vars, 0);
 	else if (c == '1')
-		ft_put_square(vars, image, 1);
+		ft_put_square(vars, 1);
 	else if (c == 'C')
-		ft_put_square(vars, image, 2);
+		ft_put_square(vars, 2);
 	else if (c == 'E')
-		ft_put_square(vars, image, 3);
+		ft_put_square(vars, 3);
 	else if (c == 'P')
-		ft_put_square(vars, image, 4);
+		ft_put_square(vars, 4);
 }
 
-void	ft_create_image(t_prgrm *vars, t_image *image)
+void	ft_create_image(t_prgrm *vars)
 {
 	int	i;
 	int	j;
@@ -40,7 +40,7 @@ void	ft_create_image(t_prgrm *vars, t_image *image)
 		while (vars->map[i][j] != '\0')
 		{
 			vars->pos_square_x = vars->pos_square_x + 32;
-			ft_create_image_2(vars, image, vars->map[i][j]);
+			ft_create_image_2(vars, vars->map[i][j]);
 			j++;
 		}
 		i++;
@@ -57,18 +57,8 @@ void	ft_put_values(t_prgrm *vars)
 	vars->moves = 0;
 	vars->counter = 0;
 	vars->animate = 1;
-}
-
-void	ft_put_images(t_prgrm *vars, t_image *image)
-{
-	image->one = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/01_r.xpm", &image->size_x, &image->size_y);
-	image->two = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/02_r.xpm", &image->size_x, &image->size_y);
-	image->three = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/03_r.xpm", &image->size_x, &image->size_y);
-	image->four = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/04_r.xpm", &image->size_x, &image->size_y);
-	image->five = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/05_r.xpm", &image->size_x, &image->size_y);
-	image->six = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/06_r.xpm", &image->size_x, &image->size_y);
-	image->seven = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/07_r.xpm", &image->size_x, &image->size_y);
-	image->eight = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/08_r.xpm", &image->size_x, &image->size_y);
+	vars->i = 0;
+	vars->dir = 1;
 }
 
 // xpm file to window, when destroy image/window, it doesn't delete the pointer.
@@ -76,7 +66,6 @@ void	ft_put_images(t_prgrm *vars, t_image *image)
 int	main(int argc, char	**argv)
 {
 	t_prgrm	vars;
-	t_image	image;
 
 	if (argc < 2 || argc > 2)
 		ft_error(&vars, 1);
@@ -84,14 +73,13 @@ int	main(int argc, char	**argv)
 	if (vars.mlx == NULL)
 		perror("Connection to graphics unit failed.");
 	ft_put_values(&vars);
-	// ft_put_images(&vars, &image);
 	ft_read_from_map(&vars, argv[1]);
 	ft_check_map_border(&vars);
 	vars.mlx_win = mlx_new_window(vars.mlx, (vars.x * 32) + 64, (vars.y * 32) + 96, "so_long");
 	if (vars.mlx_win == NULL)
 		perror("Window initialization failed.");
-	ft_create_image(&vars, &image);
-	ft_put_flames(&vars, &image);
+	ft_create_image(&vars);
+	ft_put_flames(&vars);
 	ft_hooks(&vars);
 	mlx_key_hook(vars.mlx_win, ft_key_hook, &vars);
 	mlx_loop_hook(vars.mlx, ft_loop, &vars);

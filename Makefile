@@ -6,15 +6,15 @@
 #    By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 13:20:22 by pmeising          #+#    #+#              #
-#    Updated: 2022/08/11 17:03:04 by pmeising         ###   ########.fr        #
+#    Updated: 2022/08/11 17:43:17 by pmeising         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= so_long
 
-CC			:= gcc -g -fsanitize=address
+CC			:= gcc -g
 
-CFLAGS		:= -Werror -Wextra -Wall
+CFLAGS		:= -Werror -Wextra -Wall -fsanitize=address
 
 RM			:= rm -f
 

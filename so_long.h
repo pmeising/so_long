@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/11 16:37:46 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/11 21:37:30 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ typedef struct s_prgrm
 	int		moves;
 	int		animate;
 	int		counter;
+	int		size_x;
+	int		size_y;
+	void	*xpm;
+	int		i;
+	int		dir;
 }					t_prgrm;
 
 typedef struct	s_image
@@ -46,31 +51,24 @@ typedef struct	s_image
 	int			size_x;
 	int			size_y;
 	void		*xpm;
-	void		*one;
-	void		*two;
-	void		*three;
-	void		*four;
-	void		*five;
-	void		*six;
-	void		*seven;
-	void		*eight;
 }				t_image;
 
 // READING MAP functions:
 
 void	ft_read_from_map(t_prgrm *vars, char *map);
 void	ft_check_map_border(t_prgrm *vars);
-void	ft_put_square(t_prgrm *vars, t_image *image, int i);
+void	ft_put_square(t_prgrm *vars, int i);
+void	ft_put_square_2(t_prgrm *vars, int i);
 
 // HOOK functions:
 
 void	ft_hooks(t_prgrm *vars);
-int		ft_key_hook(int keycode, t_prgrm *vars, t_image *image);
+int		ft_key_hook(int keycode, t_prgrm *vars);
 int		ft_close_program(t_prgrm *vars, int ecode);
 
 // Walking the character
 
-void	ft_walk(t_prgrm *vars, t_image *image, int direction);
+void	ft_walk(t_prgrm *vars, int direction);
 void	ft_free_struct(t_image *image);
 
 // Get next line functions
@@ -86,18 +84,25 @@ void	ft_error(t_prgrm *vars, int ecode);
 void	ft_put_values(t_prgrm *vars);
 void	ft_free_images(t_prgrm *vars, t_image *image);
 void	ft_print_addr(t_image *image);
-int		ft_helper_0(t_prgrm *vars, t_image *image);
-int		ft_helper_1(t_prgrm *vars, t_image *image);
-int		ft_helper_2(t_prgrm *vars, t_image *image);
-int		ft_helper_3(t_prgrm *vars, t_image *image);
+void		ft_helper_0(t_prgrm *vars);
+void		ft_helper_1(t_prgrm *vars);
+void		ft_helper_2(t_prgrm *vars);
+void		ft_helper_3(t_prgrm *vars);
 int		ft_helper_4(t_prgrm *vars);
 int		ft_helper_5(t_prgrm *vars);
 int		ft_helper_6(t_prgrm *vars);
 int		ft_helper_7(t_prgrm *vars);
-void	ft_put_flames(t_prgrm *vars, t_image *image);
+void	ft_helper_8(t_prgrm *vars);
+void	ft_helper_9(t_prgrm *vars);
+void	ft_helper_10(t_prgrm *vars);
+void	ft_helper_11(t_prgrm *vars);
+void	ft_put_flames(t_prgrm *vars);
 
 // BONUS functions
 
-int		ft_loop(t_prgrm *vars, t_image *image);
+int		ft_loop(t_prgrm *vars);
+void	ft_put_square_loop(t_prgrm *vars, int i);
+void	ft_put_square_loop_walk_left(t_prgrm *vars, int i);
+void	ft_put_square_loop_walk_right(t_prgrm *vars, int i);
 
 #endif
