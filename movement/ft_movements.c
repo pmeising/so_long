@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 14:33:17 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/09 23:57:06 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/11 15:57:50 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,10 @@ void	ft_walk_down(t_prgrm *vars, t_image *image)
 
 void	ft_walk(t_prgrm *vars, t_image *image, int direction)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	char	*moves;
+	char	*moves_2;
 
 	x = 0;
 	y = 0;
@@ -143,7 +145,16 @@ void	ft_walk(t_prgrm *vars, t_image *image, int direction)
 		ft_walk_down(vars, image);
 	else if (direction == 3)
 		ft_walk_right(vars, image);
+	if (vars->moves == 0)
+		mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32), ((vars->y * 32) + 64), 0xFFFFFFFF, "MOVES:");
 	vars->moves++;
-	mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32), ((vars->y * 32) + 64), 0xFFFFFFFF, "MOVES:");
-	mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32) + 32, ((vars->y * 32) + 64), 0xFFFFFFFF, ft_itoa(vars->moves));
+	moves = ft_itoa(vars->moves);
+	if (vars->moves > 0)
+	{
+		moves_2 = ft_itoa(vars->moves - 1);
+		mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32) + 64, ((vars->y * 32) + 64), 0x00000000, moves_2);
+		free (moves_2);
+		free (moves);
+	}
+	mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32) + 64, ((vars->y * 32) + 64), 0xFFFFFFFF, moves);
 }

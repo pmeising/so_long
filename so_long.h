@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/09 23:36:58 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:37:46 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_prgrm
 	int		y;
 	int		coins;
 	int		moves;
+	int		animate;
+	int		counter;
 }					t_prgrm;
 
 typedef struct	s_image
@@ -44,14 +46,14 @@ typedef struct	s_image
 	int			size_x;
 	int			size_y;
 	void		*xpm;
-	void		*wall;
-	void		*wall_flame;
-	void		*player;
-	void		*floor;
-	void		*c1;
-	void		*c2;
-	void		*exit;
-	void		*barrel;
+	void		*one;
+	void		*two;
+	void		*three;
+	void		*four;
+	void		*five;
+	void		*six;
+	void		*seven;
+	void		*eight;
 }				t_image;
 
 // READING MAP functions:
@@ -93,5 +95,9 @@ int		ft_helper_5(t_prgrm *vars);
 int		ft_helper_6(t_prgrm *vars);
 int		ft_helper_7(t_prgrm *vars);
 void	ft_put_flames(t_prgrm *vars, t_image *image);
+
+// BONUS functions
+
+int		ft_loop(t_prgrm *vars, t_image *image);
 
 #endif

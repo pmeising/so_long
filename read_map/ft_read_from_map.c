@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:55:28 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/09 23:20:05 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:06:18 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	ft_read_from_map(t_prgrm *vars, char *map)
 	}
 	row_1 = get_next_line(fd);
 	if (row_1 == NULL)
-		ft_printf("File empty\n");
+		ft_error(vars, 4);
 	vars->x = ft_strlen(row_1) - 1;
 	row_1[vars->x] = '\0';
 	vars->map = malloc(500);

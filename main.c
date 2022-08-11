@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:36:42 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/09 23:40:43 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:44:44 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,20 @@ void	ft_put_values(t_prgrm *vars)
 	vars->pos_square_y = 0;
 	vars->map_source = NULL;
 	vars->moves = 0;
+	vars->counter = 0;
+	vars->animate = 1;
+}
+
+void	ft_put_images(t_prgrm *vars, t_image *image)
+{
+	image->one = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/01_r.xpm", &image->size_x, &image->size_y);
+	image->two = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/02_r.xpm", &image->size_x, &image->size_y);
+	image->three = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/03_r.xpm", &image->size_x, &image->size_y);
+	image->four = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/04_r.xpm", &image->size_x, &image->size_y);
+	image->five = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/05_r.xpm", &image->size_x, &image->size_y);
+	image->six = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/06_r.xpm", &image->size_x, &image->size_y);
+	image->seven = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/07_r.xpm", &image->size_x, &image->size_y);
+	image->eight = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/08_r.xpm", &image->size_x, &image->size_y);
 }
 
 // xpm file to window, when destroy image/window, it doesn't delete the pointer.
@@ -70,6 +84,7 @@ int	main(int argc, char	**argv)
 	if (vars.mlx == NULL)
 		perror("Connection to graphics unit failed.");
 	ft_put_values(&vars);
+	// ft_put_images(&vars, &image);
 	ft_read_from_map(&vars, argv[1]);
 	ft_check_map_border(&vars);
 	vars.mlx_win = mlx_new_window(vars.mlx, (vars.x * 32) + 64, (vars.y * 32) + 96, "so_long");
@@ -79,6 +94,7 @@ int	main(int argc, char	**argv)
 	ft_put_flames(&vars, &image);
 	ft_hooks(&vars);
 	mlx_key_hook(vars.mlx_win, ft_key_hook, &vars);
+	mlx_loop_hook(vars.mlx, ft_loop, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }
