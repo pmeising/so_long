@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 21:40:47 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/11 21:54:33 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/12 21:11:10 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_helper_8(t_prgrm *vars)
 	while (i < 17)
 	{
 		vars->pos_square_x = vars->pos_square_x - 2;
-		ft_put_square_loop_walk_left(vars, i - 1);
+		ft_put_square_walk_left(vars, i - 1);
 		vars->pos_square_x = vars->pos_square_x + 2;
 		ft_put_square(vars, 0);
 		vars->pos_square_x = vars->pos_square_x - 2;
@@ -68,10 +68,10 @@ void	ft_helper_9(t_prgrm *vars)
 	while (i < 17)
 	{
 		vars->pos_square_x = vars->pos_square_x + 2;
-		ft_put_square_loop_walk_right(vars, i - 1);
-		vars->pos_square_x = vars->pos_square_x - 2;
-		ft_put_square(vars, 0);
-		vars->pos_square_x = vars->pos_square_x + 2;
+		ft_put_square_walk_right(vars, i - 1);
+		vars->pos_square_x = vars->pos_square_x - (i * 2);
+		ft_fill_floor_right(vars, i - 1);
+		vars->pos_square_x = vars->pos_square_x + (i * 2);
 		usleep(9000);
 		i++;
 	}
@@ -89,9 +89,9 @@ void	ft_helper_10(t_prgrm *vars)
 	{
 		vars->pos_square_y = vars->pos_square_y - 2;
 		if (vars->dir == 1)
-			ft_put_square_loop_walk_right(vars, i - 1);
+			ft_put_square_walk_right(vars, i - 1);
 		else if (vars->dir == 2)
-			ft_put_square_loop_walk_left(vars, i - 1);
+			ft_put_square_walk_left(vars, i - 1);
 		vars->pos_square_y = vars->pos_square_y + 2;
 		ft_put_square(vars, 0);
 		vars->pos_square_y = vars->pos_square_y - 2;
@@ -111,7 +111,7 @@ void	ft_helper_11(t_prgrm *vars)
 	while (i < 17)
 	{
 		vars->pos_square_y = vars->pos_square_y + 2;
-		ft_put_square_loop_walk_right(vars, i - 1);
+		ft_put_square_walk_right(vars, i - 1);
 		vars->pos_square_y = vars->pos_square_y - 2;
 		ft_put_square(vars, 0);
 		vars->pos_square_y = vars->pos_square_y + 2;

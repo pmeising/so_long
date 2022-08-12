@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/11 21:37:30 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/12 21:05:35 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_prgrm
 	void	*xpm;
 	int		i;
 	int		dir;
+	int		villain;
+	int		dir_vil;
 }					t_prgrm;
 
 typedef struct	s_image
@@ -102,7 +104,11 @@ void	ft_put_flames(t_prgrm *vars);
 
 int		ft_loop(t_prgrm *vars);
 void	ft_put_square_loop(t_prgrm *vars, int i);
-void	ft_put_square_loop_walk_left(t_prgrm *vars, int i);
-void	ft_put_square_loop_walk_right(t_prgrm *vars, int i);
+void	ft_put_square_walk_left(t_prgrm *vars, int i);
+void	ft_put_square_walk_right(t_prgrm *vars, int i);
+void	ft_fill_floor_right(t_prgrm *vars, int i);
+void	ft_put_villain(t_prgrm *vars);
+void	ft_walk_villain_left(t_prgrm *vars);
+void	ft_walk_villain_right(t_prgrm *vars);
 
 #endif

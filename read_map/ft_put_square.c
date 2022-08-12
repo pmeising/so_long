@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:03:07 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/11 21:01:29 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/12 20:25:50 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_put_square_loop(t_prgrm *vars, int i)
 	}
 }
 
-void	ft_put_square_loop_walk_left(t_prgrm *vars, int i)
+void	ft_put_square_walk_left(t_prgrm *vars, int i)
 {
 	if (i == 0)
 		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/01_l.xpm", &vars->size_x, &vars->size_y);
@@ -121,7 +121,7 @@ void	ft_put_square_loop_walk_left(t_prgrm *vars, int i)
 	}
 }
 
-void	ft_put_square_loop_walk_right(t_prgrm *vars, int i)
+void	ft_put_square_walk_right(t_prgrm *vars, int i)
 {
 	if (i == 0)
 		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/01_r.xpm", &vars->size_x, &vars->size_y);
@@ -155,6 +155,45 @@ void	ft_put_square_loop_walk_right(t_prgrm *vars, int i)
 		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/15_r.xpm", &vars->size_x, &vars->size_y);
 	else if (i == 15)
 		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk/16_r.xpm", &vars->size_x, &vars->size_y);
+	if (vars->xpm != NULL)
+	{
+		mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->xpm, vars->pos_square_x, vars->pos_square_y);
+		mlx_destroy_image(vars->mlx, vars->xpm);
+	}
+}
+
+void	ft_fill_floor_right(t_prgrm *vars, int i)
+{
+	if (i == 0)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/01_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 1)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/02_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 2)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/03_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 3)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/04_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 4)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/05_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 5)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/06_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 6)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/07_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 7)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/08_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 8)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/09_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 9)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/10_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 10)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/11_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 11)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/12_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 12)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/13_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 13)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/14_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 14)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/15_r.xpm", &vars->size_x, &vars->size_y);
 	if (vars->xpm != NULL)
 	{
 		mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->xpm, vars->pos_square_x, vars->pos_square_y);

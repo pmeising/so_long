@@ -6,7 +6,7 @@
 #    By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 13:20:22 by pmeising          #+#    #+#              #
-#    Updated: 2022/08/11 17:43:17 by pmeising         ###   ########.fr        #
+#    Updated: 2022/08/12 21:02:15 by pmeising         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS		:= main.c ft_hooks.c ./read_map/ft_read_from_map.c \
 			./read_map/ft_put_square.c ./error_handling/ft_error.c	\
 			./movement/ft_movements.c ./error_handling/ft_close_program.c	\
 			./movement/ft_helper.c ./movement/ft_helper_2.c	./bonus/ft_animation.c \
+			./bonus/ft_villain.c ./bonus/ft_movement_villain.c \
 
 OBJS		:= ${SRCS:.c=.o}
 
