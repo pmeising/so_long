@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 16:51:36 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 20:36:50 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:34:48 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ void	ft_map_not_found(t_prgrm *vars)
 	exit(0);
 }
 
+void	ft_map_format(t_prgrm *vars)
+{
+	mlx_destroy_display(vars->mlx);
+	free (vars->mlx);
+	exit (0);
+}
+
 int	ft_close_program(t_prgrm *vars, int ecode)
 {
 	if (ecode == 1)
@@ -53,6 +60,8 @@ int	ft_close_program(t_prgrm *vars, int ecode)
 		ft_invalid_map(vars);
 	else if (ecode == 3)
 		ft_map_not_found(vars);
+	else if (ecode == 6)
+		ft_map_format(vars);
 	ft_free_map(vars);
 	mlx_destroy_window(vars->mlx, vars->mlx_win);
 	mlx_destroy_display(vars->mlx);

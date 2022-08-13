@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 14:33:17 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/11 21:37:07 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:13:12 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	ft_walk_left(t_prgrm *vars)
 
 	exit = 0;
 	vars->dir = 2;
+	if (vars->map[((vars->pos_square_y - 32) / 32)]
+		[(((vars->pos_square_x - 32) / 32) - 1)] == 'V')
+		ft_game_over(vars);
 	if (vars->map[((vars->pos_square_y - 32) / 32)]
 		[(((vars->pos_square_x - 32) / 32) - 1)] == '1')
 		return ;
@@ -42,6 +45,9 @@ void	ft_walk_right(t_prgrm *vars)
 	exit = 0;
 	vars->dir = 1;
 	if (vars->map[((vars->pos_square_y - 32) / 32)]
+		[(((vars->pos_square_x - 32) / 32) + 1)] == 'V')
+		ft_game_over(vars);
+	if (vars->map[((vars->pos_square_y - 32) / 32)]
 		[(((vars->pos_square_x - 32) / 32) + 1)] == '1')
 		return ;
 	ft_helper_1(vars);
@@ -64,6 +70,9 @@ void	ft_walk_up(t_prgrm *vars)
 
 	exit = 0;
 	if (vars->map[(((vars->pos_square_y - 32) / 32) - 1)]
+		[((vars->pos_square_x - 32) / 32)] == 'V')
+		ft_game_over(vars);
+	if (vars->map[(((vars->pos_square_y - 32) / 32) - 1)]
 		[((vars->pos_square_x - 32) / 32)] == '1')
 		return ;
 	ft_helper_2(vars);
@@ -85,6 +94,9 @@ void	ft_walk_down(t_prgrm *vars)
 	int	exit;
 
 	exit = 0;
+	if (vars->map[(((vars->pos_square_y - 32) / 32) + 1)]
+		[((vars->pos_square_x - 32) / 32)] == 'V')
+		ft_game_over(vars);
 	if (vars->map[(((vars->pos_square_y - 32) / 32) + 1)]
 		[((vars->pos_square_x - 32) / 32)] == '1')
 		return ;

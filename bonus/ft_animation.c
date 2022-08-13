@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:55:56 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 20:41:00 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 20:42:44 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	ft_loop_villain(t_prgrm *vars)
 			vars->counter_vil = 0;
 			ft_check_left_over(vars);
 			vars->steps++;
-			if (vars->steps == 5)
+			if (vars->steps == 4)
 			{
 				if (vars->dir_vil == 1)
 					vars->dir_vil = 2;
@@ -119,7 +119,7 @@ int	ft_loop_villain(t_prgrm *vars)
 			vars->counter_vil = 0;
 			ft_check_left_over(vars);
 			vars->steps++;
-			if (vars->steps == 5)
+			if (vars->steps == 4)
 			{
 				if (vars->dir_vil == 1)
 					vars->dir_vil = 2;

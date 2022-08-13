@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:55:28 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/11 16:06:18 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:21:29 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,10 @@ void	ft_read_from_map(t_prgrm *vars, char *map)
 	int		fd;
 	char	*row_1;
 
+	ft_map_check(vars, map);
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("open");
 		ft_error(vars, 3);
-	}
 	row_1 = get_next_line(fd);
 	if (row_1 == NULL)
 		ft_error(vars, 4);

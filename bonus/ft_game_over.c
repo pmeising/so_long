@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:33:31 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 20:39:01 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:07:25 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_game_over(t_prgrm *vars)
 {
 	int		i;
 	int		j;
-	char	*moves_2;
 
 	i = 0;
 	j = 0;
@@ -34,9 +33,10 @@ void	ft_game_over(t_prgrm *vars)
 		ft_put_square(vars, 1);
 		i++;
 	}
-	moves_2 = ft_itoa(vars->moves - 1);
-	mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32) + 64, ((vars->y * 32) + 64), 0x00000000, moves_2);
-	free (moves_2);
-	mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32) + 64, ((vars->y * 32) + 64), 0xFFFFFFFF, "GAME OVER.\nYOU LOST.");
-	// ft_free_map()
+	usleep(1000000);
+	ft_free_map(vars);
+	mlx_destroy_window(vars->mlx, vars->mlx_win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
+	exit (0);
 }

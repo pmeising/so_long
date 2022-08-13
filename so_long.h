@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 19:54:51 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:27:02 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ char	*get_next_line(int fd);
 // ERROR management
 
 void	ft_error(t_prgrm *vars, int ecode);
+void	ft_free_map(t_prgrm *vars);
+void	ft_map_check(t_prgrm *vars, char *map);
 
 // Utils
 
