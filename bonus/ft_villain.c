@@ -6,11 +6,28 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 20:28:45 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 22:04:17 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 22:16:48 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	ft_check(t_prgrm *vars)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (vars->map[j] && ft_strchr(vars->map[j], 'V') == 0)
+		j++;
+	if (j == vars->y)
+		return ;
+	while (i < vars->x && vars->map[j][i] && vars->map[j][i] != 'V')
+		i++;
+	if (vars->map[j][i] == 'V')
+		vars->villain = 1;
+}
 
 void	ft_put_villain(t_prgrm *vars)
 {
@@ -32,14 +49,5 @@ void	ft_put_villain(t_prgrm *vars)
 		else
 			return ;
 	}
-	i = 0;
-	j = 0;
-	while (vars->map[j] && ft_strchr(vars->map[j], 'V') == 0)
-		j++;
-	if (j == vars->y)
-		return ;
-	while (i < vars->x && vars->map[j][i] && vars->map[j][i] != 'V')
-		i++;
-	if (vars->map[j][i] == 'V')
-		vars->villain = 1;
+	ft_check(vars);
 }

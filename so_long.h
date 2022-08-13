@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 21:37:54 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 22:26:23 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	ft_walk_villain_left(t_prgrm *vars);
 void	ft_walk_villain_right(t_prgrm *vars);
 void	ft_put_square_walk_left_villain(t_prgrm *vars, int i);
 void	ft_put_square_walk_right_villain(t_prgrm *vars, int i);
+void	ft_check_left_over(t_prgrm *vars);
 void	ft_game_over(t_prgrm *vars);
 
 #endif
