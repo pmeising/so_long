@@ -6,23 +6,11 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 16:51:36 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/11 16:42:58 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 20:36:50 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-// void	ft_free_images(t_prgrm *vars, t_image *image)
-// {
-// 		mlx_destroy_image(vars->mlx, image->floor);
-// 		mlx_destroy_image(vars->mlx, image->c1);
-// 		mlx_destroy_image(vars->mlx, image->c2);
-// 		mlx_destroy_image(vars->mlx, image->wall);
-// 		mlx_destroy_image(vars->mlx, image->player);
-// 		mlx_destroy_image(vars->mlx, image->exit);
-// 		mlx_destroy_image(vars->mlx, image->wall_flame);
-// 		mlx_destroy_image(vars->mlx, image->barrel);
-// }
 
 void	ft_free_map(t_prgrm *vars)
 {

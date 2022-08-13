@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:36:42 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/12 21:05:44 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 19:21:43 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,12 @@ void	ft_put_values(t_prgrm *vars)
 	vars->map_source = NULL;
 	vars->moves = 0;
 	vars->counter = 0;
+	vars->counter_vil = 0;
 	vars->animate = 1;
 	vars->i = 0;
 	vars->dir = 1;
 	vars->dir_vil = 1;
+	vars->steps = 0;
 }
 
 // xpm file to window, when destroy image/window, it doesn't delete the pointer.

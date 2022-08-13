@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 20:28:45 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/12 20:53:20 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 19:14:26 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ void	ft_put_villain(t_prgrm *vars)
 		i++;
 	if (vars->x > 7 && vars->y > 7)
 	{
-		if (vars->map[j][i + 1] == '0')
-			vars->map[j][i + 1] = 'V';
-		else if (vars->map[j][i - 1] == '0')
-			vars->map[j][i - 1] = 'V';
-		else if (vars->map[j - 1][i] == '0')
-			vars->map[j - 1][i] = 'V';
-		else if (vars->map[j + 1][i] == '0')
-			vars->map[j + 1][i] = 'V';
+		if (vars->map[j][i + 1] == '1' && vars->map[j][i - 1] == '1' &&
+			vars->map[j - 1][i] == '1' && vars->map[j + 1][i] == '0' &&
+			vars->map[j + 1][i + 1] == '0' && vars->map[j + 1][i - 1] == '0')
+			vars->map[j + 1][i - 1] = 'V';
+		else
+			return ;
 	}
 	i = 0;
 	j = 0;

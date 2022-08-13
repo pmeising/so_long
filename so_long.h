@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/12 21:05:35 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 19:54:51 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_prgrm
 	int		moves;
 	int		animate;
 	int		counter;
+	int		counter_vil;
 	int		size_x;
 	int		size_y;
 	void	*xpm;
@@ -41,6 +42,7 @@ typedef struct s_prgrm
 	int		dir;
 	int		villain;
 	int		dir_vil;
+	int		steps;
 }					t_prgrm;
 
 typedef struct	s_image
@@ -110,5 +112,8 @@ void	ft_fill_floor_right(t_prgrm *vars, int i);
 void	ft_put_villain(t_prgrm *vars);
 void	ft_walk_villain_left(t_prgrm *vars);
 void	ft_walk_villain_right(t_prgrm *vars);
+void	ft_put_square_walk_left_villain(t_prgrm *vars, int i);
+void	ft_put_square_walk_right_villain(t_prgrm *vars, int i);
+void	ft_game_over(t_prgrm *vars);
 
 #endif

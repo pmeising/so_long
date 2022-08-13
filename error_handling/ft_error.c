@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:47:17 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/11 16:05:09 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 19:53:24 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,10 @@ void	ft_error(t_prgrm *vars, int ecode)
 		ft_printf("Error\nMap not found.");
 	else if (ecode == 4)
 		ft_printf("Error\nEmpty map.\n");
+	else if (ecode == 5)
+	{
+		vars->animate = 0;
+		ft_game_over(vars);
+	}
 	ft_close_program(vars, ecode);
 }
