@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 21:27:02 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:37:54 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void	ft_map_check(t_prgrm *vars, char *map);
 void	ft_put_values(t_prgrm *vars);
 void	ft_free_images(t_prgrm *vars, t_image *image);
 void	ft_print_addr(t_image *image);
-void		ft_helper_0(t_prgrm *vars);
-void		ft_helper_1(t_prgrm *vars);
-void		ft_helper_2(t_prgrm *vars);
-void		ft_helper_3(t_prgrm *vars);
+void	ft_helper_0(t_prgrm *vars);
+void	ft_helper_1(t_prgrm *vars);
+void	ft_helper_2(t_prgrm *vars);
+void	ft_helper_3(t_prgrm *vars);
 int		ft_helper_4(t_prgrm *vars);
 int		ft_helper_5(t_prgrm *vars);
 int		ft_helper_6(t_prgrm *vars);

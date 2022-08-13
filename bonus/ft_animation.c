@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:55:56 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 20:42:44 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:54:10 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,9 @@ void	ft_check_left_over(t_prgrm *vars)
 		y++;
 	while (x < vars->x && vars->map[y][x] != 'V')
 		x++;
-	// if (vars->dir_vil == 1)
-	// {
 	vars->pos_square_x = 32 + (x * 32);
 	vars->pos_square_y = 32 + (y * 32);
 	ft_put_square(vars, 0);
-	// }
-	// else if (vars->dir_vil == 2)
-	// {
-	// 	vars->pos_square_x = 32 + (x * 32);
-	// 	vars->pos_square_y = 32 + (y * 32);
-	// 	ft_put_square(vars, 0);
-	// }
 }
 
 int	ft_loop_player(t_prgrm *vars)
@@ -50,7 +41,7 @@ int	ft_loop_player(t_prgrm *vars)
 		x++;
 	vars->pos_square_x = 32 + (x * 32);
 	vars->pos_square_y = 32 + (y * 32);
-	usleep(50000);
+	usleep(75000);
 	vars->counter++;
 	if (vars->animate == 1 && vars->dir == 1)
 	{
@@ -80,7 +71,7 @@ int	ft_loop_villain(t_prgrm *vars)
 		x++;
 	vars->pos_square_x = 32 + (x * 32);
 	vars->pos_square_y = 32 + (y * 32);
-	usleep(50000);
+	usleep(10000);
 	vars->counter_vil++;
 	if (vars->dir_vil == 1)
 	{
@@ -140,7 +131,7 @@ int	ft_loop_villain(t_prgrm *vars)
 int	ft_loop(t_prgrm *vars)
 {
 	ft_loop_player(vars);
-	if (vars->x > 7 && vars->y > 7)
+	if (vars->villain == 1)
 		ft_loop_villain(vars);
 	return (0);
 }

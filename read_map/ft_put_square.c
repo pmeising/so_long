@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:03:07 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 19:23:52 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 22:00:30 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,8 @@ void	ft_fill_floor_right(t_prgrm *vars, int i)
 	else if (i == 13)
 		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/14_r.xpm", &vars->size_x, &vars->size_y);
 	else if (i == 14)
+		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/15_r.xpm", &vars->size_x, &vars->size_y);
+	else if (i == 15)
 		vars->xpm = mlx_xpm_file_to_image(vars->mlx, "./Tiles/walk_smooth/15_r.xpm", &vars->size_x, &vars->size_y);
 	if (vars->xpm != NULL)
 	{

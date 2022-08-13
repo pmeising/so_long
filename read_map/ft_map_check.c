@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 21:20:31 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 21:36:00 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:45:00 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_map_check(t_prgrm *vars, char *map)
 {
-	char	*i;
+	int		len;
 
-	i = ft_strchr(map, '.');
-	if (!(i[0] == '.' && i[1] == 'b' && i[2] == 'e' && i[3] == 'r' &&
-		i[4] == '\0'))
+	len = ft_strlen(map);
+	if (!(map[len - 1] == 'r' && map[len - 2] == 'e' && map[len - 3] == 'b'
+		&& map[len - 4] == '.'))
 		ft_error(vars, 6);
 }
