@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/14 14:34:53 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/14 15:29:06 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	ft_put_flames(t_prgrm *vars);
 
 void	ft_write_steps(t_prgrm *vars);
 int		ft_loop(t_prgrm *vars);
+int		ft_loop_villain(t_prgrm *vars);
 void	ft_put_square_loop(t_prgrm *vars, int i);
 void	ft_put_square_walk_left(t_prgrm *vars, int i);
 void	ft_put_square_walk_right(t_prgrm *vars, int i);
