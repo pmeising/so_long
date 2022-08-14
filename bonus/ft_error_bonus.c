@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:47:17 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/14 16:48:18 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:14:39 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,11 @@ void	ft_error(t_prgrm *vars, int ecode)
 		ft_printf("Error\nEmpty map.\n");
 	else if (ecode == 6)
 		ft_printf("Error\nInvalid map format.\n");
-	ft_close_program(vars, ecode);
+	if (ecode != 5)
+		ft_close_program(vars, ecode);
+	if (ecode == 5)
+	{
+		vars->animate = 0;
+		ft_game_over(vars);
+	}
 }

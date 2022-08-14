@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:36:42 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/14 16:52:50 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/14 17:00:07 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	ft_create_image_2(t_prgrm *vars, char c)
 {
@@ -55,9 +55,14 @@ void	ft_put_values(t_prgrm *vars)
 	vars->pos_square_y = 0;
 	vars->map_source = NULL;
 	vars->moves = 0;
-	vars->steps = 0;
 	vars->counter = 0;
+	vars->counter_vil = 0;
+	vars->animate = 1;
 	vars->i = 0;
+	vars->dir = 1;
+	vars->dir_vil = 1;
+	vars->steps = 0;
+	vars->villain = 0;
 }
 
 int	main(int argc, char	**argv)
@@ -77,8 +82,11 @@ int	main(int argc, char	**argv)
 	if (vars.mlx_win == NULL)
 		perror("Error\nWindow initialization failed.");
 	ft_create_image(&vars);
+	ft_put_flames(&vars);
+	ft_put_villain(&vars);
 	ft_hooks(&vars);
 	mlx_key_hook(vars.mlx_win, ft_key_hook, &vars);
+	mlx_loop_hook(vars.mlx, ft_loop, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }

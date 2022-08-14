@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/14 15:29:06 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/14 16:46:46 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_prgrm
 	int		steps;
 }					t_prgrm;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	char		*addrs;
 	int			bpp;
@@ -88,6 +88,7 @@ void	ft_map_check(t_prgrm *vars, char *map);
 
 // Utils
 
+void	ft_write_steps(t_prgrm *vars);
 void	ft_put_values(t_prgrm *vars);
 void	ft_free_images(t_prgrm *vars, t_image *image);
 void	ft_print_addr(t_image *image);
@@ -107,7 +108,7 @@ void	ft_put_flames(t_prgrm *vars);
 
 // BONUS functions
 
-void	ft_write_steps(t_prgrm *vars);
+void	ft_write_steps_display(t_prgrm *vars);
 int		ft_loop(t_prgrm *vars);
 int		ft_loop_villain(t_prgrm *vars);
 void	ft_put_square_loop(t_prgrm *vars, int i);
