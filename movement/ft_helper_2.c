@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 21:40:47 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/12 21:11:10 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:11:28 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,48 +76,5 @@ void	ft_helper_9(t_prgrm *vars)
 		i++;
 	}
 	vars->pos_square_x = vars->pos_square_x - 32;
-	ft_put_square(vars, 0);
-}
-
-void	ft_helper_10(t_prgrm *vars)
-{
-	int	i;
-
-	i = 1;
-	ft_put_square(vars, 0);
-	while (i < 17)
-	{
-		vars->pos_square_y = vars->pos_square_y - 2;
-		if (vars->dir == 1)
-			ft_put_square_walk_right(vars, i - 1);
-		else if (vars->dir == 2)
-			ft_put_square_walk_left(vars, i - 1);
-		vars->pos_square_y = vars->pos_square_y + 2;
-		ft_put_square(vars, 0);
-		vars->pos_square_y = vars->pos_square_y - 2;
-		usleep(9000);
-		i++;
-	}
-	vars->pos_square_y = vars->pos_square_y + 32;
-	ft_put_square(vars, 0);
-}
-
-void	ft_helper_11(t_prgrm *vars)
-{
-	int	i;
-
-	i = 1;
-	ft_put_square(vars, 0);
-	while (i < 17)
-	{
-		vars->pos_square_y = vars->pos_square_y + 2;
-		ft_put_square_walk_right(vars, i - 1);
-		vars->pos_square_y = vars->pos_square_y - 2;
-		ft_put_square(vars, 0);
-		vars->pos_square_y = vars->pos_square_y + 2;
-		usleep(9000);
-		i++;
-	}
-	vars->pos_square_y = vars->pos_square_y - 32;
 	ft_put_square(vars, 0);
 }

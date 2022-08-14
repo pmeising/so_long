@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 14:33:17 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 21:13:12 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:09:38 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,6 @@ void	ft_walk(t_prgrm *vars, int direction)
 {
 	int		x;
 	int		y;
-	char	*moves;
-	char	*moves_2;
 
 	x = 0;
 	y = 0;
@@ -139,16 +137,5 @@ void	ft_walk(t_prgrm *vars, int direction)
 		ft_walk_down(vars);
 	else if (direction == 3)
 		ft_walk_right(vars);
-	if (vars->moves == 0)
-		mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32), ((vars->y * 32) + 64), 0xFFFFFFFF, "MOVES:");
-	vars->moves++;
-	moves = ft_itoa(vars->moves);
-	if (vars->moves > 0)
-	{
-		moves_2 = ft_itoa(vars->moves - 1);
-		mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32) + 64, ((vars->y * 32) + 64), 0x00000000, moves_2);
-		free (moves_2);
-	}
-	mlx_string_put(vars->mlx, vars->mlx_win, ((vars->x / 2) * 32) + 64, ((vars->y * 32) + 64), 0xFFFFFFFF, moves);
-	free (moves);
+	ft_write_steps(vars);
 }

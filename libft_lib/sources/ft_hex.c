@@ -6,12 +6,11 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 09:53:09 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/07 09:30:07 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:13:44 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
-
 
 // Takes an unsigned long (could be int, could be unsigned int) and a character
 // of the group {X, x, p}.
@@ -80,12 +79,3 @@ int	ft_hex(unsigned int n, int c)
 	ft_putnbr_hxd(n, c);
 	return (count);
 }
-
-// int	main(void)
-// {
-// 	int	count;
-
-// 	count = ft_hex_functions(0, 'x');
-// 	printf("\n%d\n", count);
-// 	return (0);
-// }

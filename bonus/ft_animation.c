@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:55:56 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 22:28:37 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:35:56 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_find_y(t_prgrm *vars, char letter)
 	while (ft_strchr(vars->map[y], letter) == 0)
 		y++;
 	vars->pos_square_y = 32 + (y * 32);
-	return(y);
+	return (y);
 }
 
 void	ft_find_x(t_prgrm *vars, char *string, char letter)
@@ -73,57 +73,9 @@ int	ft_loop_villain(t_prgrm *vars)
 	usleep(10000);
 	vars->counter_vil++;
 	if (vars->dir_vil == 1)
-	{
-		if (vars->counter_vil == 7)
-		{
-			vars->map[y][x] = '0';
-			if (vars->map[y][x + 1] == 'P')
-				ft_error(vars, 5);
-			vars->map[y][x + 1] = 'V';
-			vars->counter_vil = 0;
-			ft_check_left_over(vars);
-			vars->steps++;
-			if (vars->steps == 4)
-			{
-				if (vars->dir_vil == 1)
-					vars->dir_vil = 2;
-				else if (vars->dir_vil == 2)
-					vars->dir_vil = 1;
-				vars->steps = 0;
-			}
-		}
-		ft_put_square(vars, 0);
-		vars->pos_square_x = vars->pos_square_x + (vars->counter_vil * 4);
-		if (vars->counter_vil == 6)
-			vars->pos_square_x = vars->pos_square_x + 8;
-		ft_put_square_walk_right_villain(vars, vars->counter_vil);
-	}
+		ft_animate_villain_right(vars, x, y);
 	else if (vars->dir_vil == 2)
-	{
-		if (vars->counter_vil == 7)
-		{
-			vars->map[y][x] = '0';
-			if (vars->map[y][x - 1] == 'P')
-				ft_error(vars, 5);
-			vars->map[y][x - 1] = 'V';
-			vars->counter_vil = 0;
-			ft_check_left_over(vars);
-			vars->steps++;
-			if (vars->steps == 4)
-			{
-				if (vars->dir_vil == 1)
-					vars->dir_vil = 2;
-				else if (vars->dir_vil == 2)
-					vars->dir_vil = 1;
-				vars->steps = 0;
-			}
-		}
-		ft_put_square(vars, 0);
-		vars->pos_square_x = vars->pos_square_x - (vars->counter_vil * 4);
-		if (vars->counter_vil == 6)
-			vars->pos_square_x = vars->pos_square_x - 8;
-		ft_put_square_walk_left_villain(vars, vars->counter_vil);
-	}
+		ft_animate_villain_left(vars, x, y);
 	return (0);
 }
 

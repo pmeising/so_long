@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/13 22:26:23 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:34:53 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_read_from_map(t_prgrm *vars, char *map);
 void	ft_check_map_border(t_prgrm *vars);
 void	ft_put_square(t_prgrm *vars, int i);
 void	ft_put_square_2(t_prgrm *vars, int i);
+void	ft_put_to_window(t_prgrm *vars);
 
 // HOOK functions:
 
@@ -106,6 +107,7 @@ void	ft_put_flames(t_prgrm *vars);
 
 // BONUS functions
 
+void	ft_write_steps(t_prgrm *vars);
 int		ft_loop(t_prgrm *vars);
 void	ft_put_square_loop(t_prgrm *vars, int i);
 void	ft_put_square_walk_left(t_prgrm *vars, int i);
@@ -114,6 +116,8 @@ void	ft_fill_floor_right(t_prgrm *vars, int i);
 void	ft_put_villain(t_prgrm *vars);
 void	ft_walk_villain_left(t_prgrm *vars);
 void	ft_walk_villain_right(t_prgrm *vars);
+void	ft_animate_villain_left(t_prgrm *vars, int x, int y);
+void	ft_animate_villain_right(t_prgrm *vars, int x, int y);
 void	ft_put_square_walk_left_villain(t_prgrm *vars, int i);
 void	ft_put_square_walk_right_villain(t_prgrm *vars, int i);
 void	ft_check_left_over(t_prgrm *vars);
