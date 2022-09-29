@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:36:42 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/14 16:52:50 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:10:43 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,18 @@ void	ft_put_values(t_prgrm *vars)
 	vars->i = 0;
 }
 
+void	ft_get_username(t_prgrm *vars)
+{
+	char	*username;
+
+	vars->log_file = open("record", O_RDWR | O_APPEND, 0644);
+	ft_printf("fd: %d\n", vars->log_file);
+	ft_printf("What should I call you?\nPlayer > ");
+	username = get_next_line(0);
+	ft_printf("Your Playername: %s\n", username);
+	write(vars->log_file, username, ft_strlen(username));
+}
+
 int	main(int argc, char	**argv)
 {
 	t_prgrm	vars;
@@ -69,6 +81,7 @@ int	main(int argc, char	**argv)
 	vars.mlx = mlx_init();
 	if (vars.mlx == NULL)
 		perror("Error\nConnection to graphics unit failed.");
+	ft_get_username(&vars);
 	ft_put_values(&vars);
 	ft_read_from_map(&vars, argv[1]);
 	ft_check_map_border(&vars);

@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/14 16:46:46 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/09/29 13:45:13 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "errno.h"
+# include <sys/wait.h>
 
 typedef struct s_prgrm
 {
@@ -43,6 +44,7 @@ typedef struct s_prgrm
 	int		villain;
 	int		dir_vil;
 	int		steps;
+	int		log_file;
 }					t_prgrm;
 
 typedef struct s_image

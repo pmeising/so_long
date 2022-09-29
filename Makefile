@@ -6,7 +6,7 @@
 #    By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 13:20:22 by pmeising          #+#    #+#              #
-#    Updated: 2022/08/14 17:01:55 by pmeising         ###   ########.fr        #
+#    Updated: 2022/09/29 13:51:56 by pmeising         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,14 +45,14 @@ OBJS		:= ${SRCS:.c=.o}
 
 B_OBJS		:= ${B_SRCS:.c=.o}
 
-LIBFT = ./libft_lib/libft.a
+LIBFT 		:= ./libft_lib/libft.a
 
 .PHONY:		all clean fclean re
 
 all:		${NAME}
 
 %.o: %.c	$(LIBFT)
-			$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+			$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -c $< -o $@
 
 $(LIBFT):
 			make all -C ./libft_lib
