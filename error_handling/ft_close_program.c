@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 16:51:36 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/14 15:51:15 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/10/02 00:28:53 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,15 @@ void	ft_map_format(t_prgrm *vars)
 
 int	ft_close_program(t_prgrm *vars, int ecode)
 {
+	int		lvl;
+	int		steps;
+	char	*name;
+	int		time;
+	char	**envp;
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	lvl = 5;
 	if (ecode == 1)
 		exit(0);
 	else if (ecode == 2 || ecode == 4)
@@ -62,6 +71,21 @@ int	ft_close_program(t_prgrm *vars, int ecode)
 		ft_map_not_found(vars);
 	else if (ecode == 6)
 		ft_map_format(vars);
+	envp = vars->envp;
+	time = (long)tv.tv_sec - vars->start_time;
+	lvl = vars->lvl;
+	name = vars->username;
+	steps = vars->moves;
+	while (vars->lvl < 5 && ecode != 7)
+	{
+		ft_print_records(lvl, name, steps, time);
+		ft_free_map(vars);
+		mlx_destroy_window(vars->mlx, vars->mlx_win);
+		mlx_destroy_display(vars->mlx);
+		free(vars->mlx);
+		ft_keep_lvls_running(lvl, name, steps, time, envp);
+	}
+	ft_sort_highscore(vars);
 	ft_free_map(vars);
 	mlx_destroy_window(vars->mlx, vars->mlx_win);
 	mlx_destroy_display(vars->mlx);

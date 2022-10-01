@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:50:13 by pmeising          #+#    #+#             */
-/*   Updated: 2022/08/14 15:44:41 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/10/01 22:47:02 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	ft_key_hook(int keycode, t_prgrm *vars)
 		ft_walk(vars, 3);
 	}
 	if (keycode == 65307)
-		ft_close_program(vars, 0);
+		ft_close_program(vars, 7);
 	return (keycode);
 }

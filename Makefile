@@ -6,7 +6,7 @@
 #    By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 13:20:22 by pmeising          #+#    #+#              #
-#    Updated: 2022/09/29 13:51:56 by pmeising         ###   ########.fr        #
+#    Updated: 2022/10/02 00:43:34 by pmeising         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ BONUS		:= so_long_bonus
 
 CC			:= gcc -g
 
-CFLAGS		:= -Werror -Wextra -Wall -fsanitize=address
+CFLAGS		:= -Werror -Wextra -Wall -g -fsanitize=address
 
 RM			:= rm -f
 
@@ -40,6 +40,7 @@ B_SRCS		:= ./bonus/main_bonus.c ft_hooks.c ./read_map/ft_read_from_map.c \
 			./bonus/ft_animation.c  ./bonus/ft_villain.c ./bonus/ft_put_square_villain.c \
 			./bonus/ft_game_over.c ./read_map/ft_map_check.c ./bonus/ft_bonus_helper.c \
 			./bonus/ft_put_flames.c ./bonus/ft_write_steps_bonus.c ./bonus/ft_animate_villain.c \
+			./bonus/ft_lvl_mngmnt.c ./log/ft_print_records.c \
 
 OBJS		:= ${SRCS:.c=.o}
 
@@ -62,10 +63,12 @@ $(MLX):
 
 $(BONUS):	$(LIBFT) $(MLX) $(B_OBJS)
 			$(CC) $(B_OBJS) $(LIBFT) $(MLX) -L/usr/X11/lib -lXext -lX11 -o $(NAME)
+			make clean
 
 
 $(NAME):	$(LIBFT) $(MLX) $(OBJS)
 			$(CC) $(OBJS) $(LIBFT) $(MLX) -L/usr/X11/lib -lXext -lX11 -o $(NAME)
+			make clean
 
 
 bonus:		${BONUS}

@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:24:35 by pmeising          #+#    #+#             */
-/*   Updated: 2022/09/29 13:45:13 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/10/02 00:29:09 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@
 # include <unistd.h>
 # include "errno.h"
 # include <sys/wait.h>
+# include <sys/time.h>
 
 typedef struct s_prgrm
 {
+	char	**argv;
 	void	*mlx;
 	void	*mlx_win;
 	char	*map_source;
@@ -44,7 +46,11 @@ typedef struct s_prgrm
 	int		villain;
 	int		dir_vil;
 	int		steps;
+	char	*username;
 	int		log_file;
+	int		lvl;
+	long	start_time;
+	char	**envp;
 }					t_prgrm;
 
 typedef struct s_image
@@ -66,6 +72,9 @@ void	ft_check_map_border(t_prgrm *vars);
 void	ft_put_square(t_prgrm *vars, int i);
 void	ft_put_square_2(t_prgrm *vars, int i);
 void	ft_put_to_window(t_prgrm *vars);
+void	ft_create_image(t_prgrm *vars);
+void	ft_create_image_2(t_prgrm *vars, char c);
+
 
 // HOOK functions:
 
@@ -127,4 +136,11 @@ void	ft_put_square_walk_right_villain(t_prgrm *vars, int i);
 void	ft_check_left_over(t_prgrm *vars);
 void	ft_game_over(t_prgrm *vars);
 
+// Level Management functions:
+
+void	ft_set_lvl(t_prgrm *vars);
+void	ft_write_steps(t_prgrm *vars);
+void	ft_keep_lvls_running(int lvl, char *name, int moves, long time, char **envp);
+void	ft_print_records(int lvl, char *name, int moves, long time);
+void	ft_sort_highscore(t_prgrm *vars);
 #endif

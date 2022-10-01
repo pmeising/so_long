@@ -6,7 +6,7 @@
 /*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:36:42 by pmeising          #+#    #+#             */
-/*   Updated: 2022/09/29 14:13:18 by pmeising         ###   ########.fr       */
+/*   Updated: 2022/10/02 00:18:44 by pmeising         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void	ft_create_image(t_prgrm *vars)
 
 void	ft_put_values(t_prgrm *vars)
 {
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
 	vars->x = 0;
 	vars->y = 0;
 	vars->pos_square_x = 0;
@@ -63,29 +66,36 @@ void	ft_put_values(t_prgrm *vars)
 	vars->dir_vil = 1;
 	vars->steps = 0;
 	vars->villain = 0;
+	vars->coins = 0;
+	vars->start_time = tv.tv_sec;
 }
 
 void	ft_get_username(t_prgrm *vars)
 {
-	char	*username;
-
-	vars->log_file = open("record", O_RDWR | O_APPEND, 0644);
-	ft_printf("fd: %d\n", vars->log_file);
+	ft_set_lvl(vars);
+	if ((vars->log_file = open("./log/record", O_RDWR | O_APPEND, 0644)) == -1)
+		ft_printf("Couldn't open log file.\n Game ist not saved.\n");
+	write(vars->log_file, "\n", 1);
+	write(vars->log_file, ft_itoa(vars->lvl), 1);
 	ft_printf("What should I call you?\nPlayer > ");
-	username = get_next_line(0);
-	ft_printf("Your Playername: %s\n", username);
-	write(vars->log_file, username, ft_strlen(username));
+	vars->username = get_next_line(0);
+	write(vars->log_file, ",", 1);
+	write(vars->log_file, vars->username, (ft_strlen(vars->username) - 1));
+	ft_printf("Your Playername: %s\n", vars->username);
+	close(vars->log_file);
 }
 
-int	main(int argc, char	**argv)
+int	main(int argc, char	**argv, char **env)
 {
 	t_prgrm	vars;
 
 	if (argc < 2 || argc > 2)
 		ft_error(&vars, 1);
+	vars.envp = env;
 	vars.mlx = mlx_init();
 	if (vars.mlx == NULL)
 		perror("Error\nConnection to graphics unit failed.");
+	vars.argv = argv;
 	ft_get_username(&vars);
 	ft_put_values(&vars);
 	ft_read_from_map(&vars, argv[1]);
